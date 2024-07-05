@@ -4,15 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/public/css/styles.css" />
+    <link rel="stylesheet" href="/public/css/print.css" media="print" />
     <title>PDF Document</title>
   </head>
   <body>
-    <div id="PDFBack" class="PDFToPrint">
+    <div class="PDFToPrint">
       <div class="PDFToPrint__container">
         <div class="PDFToPrint__left">
           <img
             src="/public/images/e_certificate.png"
-            class="PDFToPrint__left__head"
+            class="PDFToPrint__left__head img-fluid"
           />
           <div class="PDFToPrint__left__head__text__mid">
             <div class="PDFToPrint__left__head__text__mid__space"></div>
@@ -23,29 +24,29 @@
           </div>
           <img
             src="/public/images/proudly_awarded_to.jpeg"
-            class="PDFToPrint__left__head__text__small"
+            class="PDFToPrint__left__head__text__small associate-img-fluid"
           />
           <div class="PDFToPrint__left__name"><%= name %></div>
           <img
             src="/public/images/for_completing.jpeg"
-            class="PDFToPrint__left__pictext"
+            class="PDFToPrint__left__pictext associate-img-fluid"
           />
           <div class="PDFToPrint__left__training"><%= course %></div>
           <div class="PDFToPrint__left__datetext"><%= date %></div>
           <div class="PDFToPrint__left__sign">
             <div class="PDFToPrint__left__sign__one">
               <img
-                class="PDFToPrint__left__sign__one__picture"
+                class="PDFToPrint__left__sign__one__picture sign-img-fluid"
                 src="/public/images/sign_imran.jpeg"
               />
               <div class="PDFToPrint__left__sign__one__name">Imran Mazhar</div>
               <div class="PDFToPrint__left__sign__one__designation">
-                T&D Manager
+                Talent Development Manager
               </div>
             </div>
             <div class="PDFToPrint__left__sign__one">
               <img
-                class="PDFToPrint__left__sign__one__picture"
+                class="PDFToPrint__left__sign__one__picture sign-img-fluid"
                 src="/public/images/sign_ali.jpeg"
               />
               <div class="PDFToPrint__left__sign__one__name">Ali Raza</div>
@@ -55,7 +56,6 @@
             </div>
           </div>
         </div>
-        <div class="PDFToPrint__right"></div>
       </div>
     </div>
   </body>
