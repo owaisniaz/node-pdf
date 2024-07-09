@@ -22,6 +22,9 @@ const formatData = (data) => {
 
 // Route to render EJS template in browser for testing
 app.get("/test", async (req, res) => {
+  console.log("req", req.hostname);
+  console.log("req", req.url);
+  console.log("req", req.method);
   try {
     const formattedData = formatData({
       name: "Shyam",
@@ -41,19 +44,25 @@ app.get("/test", async (req, res) => {
 
 // Route to render the PDF
 app.get("/download-pdf", async (req, res) => {
+  const protocol = req.protocol;
+  const host = req.get("host");
+
+  console.log("host", host);
+  const originalUrl = req.originalUrl;
+  const baseUrl = `${protocol}://${host}`;
+  console.log("baseUrl", baseUrl);
   try {
     const formattedData = formatData({
       name: "Shyam",
       course: "Test Course",
       date: "2022-2-2",
     });
-
     // Render the EJS template to HTML with dynamic data
     const html = await ejs.renderFile(
       path.join(__dirname, "views/template.ejs"),
       formattedData
     );
-
+    // console.log("req", req);
     const options = {
       format: "A4",
       // border: {
@@ -62,7 +71,8 @@ app.get("/download-pdf", async (req, res) => {
       //   bottom: "10mm",
       //   left: "10mm",
       // },
-      base: `http://localhost:${PORT}`,
+
+      base: baseUrl,
       orientation: "landscape", // Set page orientation
       paginationOffset: 1, // Start page numbering at 1
       zoomFactor: "0.75", // Adjust zoom factor if content is too large
