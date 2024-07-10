@@ -36,7 +36,7 @@ app.get("/download-pdf", async (req, res) => {
       paginationOffset: 1,
       zoomFactor: "0.75",
       // Consider using puppeteer instead of phantomjs
-      // phantomPath: process.env.PHANTOMJS_PATH || "./node_modules/phantomjs-prebuilt/bin/phantomjs",
+      phantomPath: process.env.PHANTOMJS_PATH || "./node_modules/phantomjs-prebuilt/bin/phantomjs",
     };
 
     pdf.create(html, options).toBuffer((err, buffer) => {
