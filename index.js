@@ -3,6 +3,7 @@ const path = require("path");
 const ejs = require("ejs");
 const pdf = require("html-pdf");
 const app = express();
+const phantomjs = require("phantomjs-prebuilt");
 const PORT = 5000;
 
 // Serve static files from the 'public' directory
