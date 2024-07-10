@@ -37,7 +37,7 @@ app.get("/download-pdf", async (req, res) => {
       orientation: "landscape",
       paginationOffset: 1,
       zoomFactor: "0.75",
-      phantomPath: process.env.PHANTOMJS_BIN, // Accessing the environment variable
+      phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs", // Accessing the environment variable
     };
 
     pdf.create(html, options).toBuffer((err, buffer) => {
