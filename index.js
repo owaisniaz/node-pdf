@@ -11,13 +11,11 @@ const formatData = (data) => {
 
 // Serve static files from the 'public' directory
 app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.get("/download-pdf", async (req, res) => {
   const protocol = req.protocol;
   const host = req.get("host");
   const baseUrl = `${protocol}://${host}`;
-
-  console.log("host", host);
-  console.log("baseUrl", baseUrl);
 
   try {
     const formattedData = formatData({
@@ -37,7 +35,8 @@ app.get("/download-pdf", async (req, res) => {
       orientation: "landscape",
       paginationOffset: 1,
       zoomFactor: "0.75",
-      phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs", // Accessing the environment variable
+      // Consider using puppeteer instead of phantomjs
+      // phantomPath: process.env.PHANTOMJS_PATH || "./node_modules/phantomjs-prebuilt/bin/phantomjs",
     };
 
     pdf.create(html, options).toBuffer((err, buffer) => {
@@ -58,9 +57,6 @@ app.get("/download-pdf", async (req, res) => {
 });
 
 app.get("/test", async (req, res) => {
-  console.log("req", req.hostname);
-  console.log("req", req.url);
-  console.log("req", req.method);
   try {
     const formattedData = formatData({
       name: "Shyam",
@@ -78,6 +74,8 @@ app.get("/test", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+const PORT = process.env.PORT || 5000; // Use environment variable for port on Vercel
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
