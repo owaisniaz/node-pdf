@@ -77,6 +77,7 @@ app.get("/download-pdf", async (req, res) => {
       orientation: "landscape", // Set page orientation
       paginationOffset: 1, // Start page numbering at 1
       zoomFactor: "0.75", // Adjust zoom factor if content is too large
+      phantomPath: process.env.PHANTOMJS_BIN,
     };
 
     // Generate the PDF
